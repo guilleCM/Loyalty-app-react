@@ -1,0 +1,48 @@
+[class*='custom-list-header'] {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+[class*='custom-list-item'] {
+    padding: 0.5rem;
+}
+[class*='custom-list-item']::before {
+    content : "";
+    position: absolute;
+    left: 1rem;
+    bottom: 0;
+    height: 1px;
+    width: calc(100% - 2rem);  /* or 100px */
+    border-bottom:1px solid #ccc;
+}
+label[class*='custom-list-item'] {
+    background-image: none
+}
+:checked + .checkbox__checkmark:before {
+    background: #b5a05f;
+    border: none;
+}
+[class*='item-selected'] {
+    color: #b5a05f;
+}
+
+[class*='custom-list-footer'] {
+    text-align: center;
+    padding: 0.5rem;
+    text-transform: none;
+    font-weight: bold;
+}
+
+[class*='custom-btn'] {
+    background-color: #b5a05f;
+}
+[class*='custom-btn']:active {
+    background-color: #b5a05f;
+    opacity: 1;
+}
+
+[class*='custom-back-btn'] {
+    line-height: 44px;
+    color: black; 
+    fill: black;
+}
