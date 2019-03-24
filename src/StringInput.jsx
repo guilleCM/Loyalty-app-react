@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { Input } from 'react-onsenui';
+
+const propTypes = {
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    required: PropTypes.bool,
+};
 
 class StringInput extends Component {
     render() {
@@ -29,5 +36,7 @@ class StringInput extends Component {
         )
     }
 }
+
+StringInput.propTypes = propTypes;
 
 export default StringInput;

@@ -7,7 +7,7 @@ import './App.css';
 
 import withLayoutContainer from './WithLayoutContainer';
 import WelcomePage from './WelcomePage.jsx';
-// const InitialRoute = withLayoutContainer(MainPage);
+// const InitialRoute = withLayoutContainer(SignupPage);
 
 const renderPage = (route, navigator) => (
     <route.component key={route.key} navigator={navigator} />
@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <Navigator
                 renderPage={renderPage}
-                initialRoute={{component: withLayoutContainer(WelcomePage, "WelcomePage0", true), key: 'WELCOCME_PAGE'}}
+                initialRoute={{component: withLayoutContainer(WelcomePage, "WelcomePage0", true), key: 'WELCOME_PAGE'}}
                 animation='fade'
             />
         );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, Button, Row, ListHeader, ProgressCircular } from 'react-onsenui';
 
@@ -7,6 +8,12 @@ import InputHOC from './InputHOC';
 import withLayout from './WithLayoutContainer';
 import WelcomePage from './WelcomePage';
 import './FormPage.css';
+
+const propTypes = {
+    layout: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
+};
 
 @inject('store')
 @observer 
@@ -109,5 +116,7 @@ class FormPage extends Component {
         }
     }
 }
+
+FormPage.propTypes = propTypes;
 
 export default FormPage;

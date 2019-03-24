@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { ProgressCircular, Page } from 'react-onsenui';
-import MainPage from './MainPage';
+import SignupPage from './SignupPage';
 
-// import MainPage from './MainPage';
+// import SignupPage from './SignupPage';
 const routes = {
-    "MainPage": "https://demo0339219.mockable.io/screens/signup",
+    "SignupPage": "https://demo0339219.mockable.io/screens/signup",
     "FormPage0": "https://demo0339219.mockable.io/screens/signup/0",
     "FormPage1": "https://demo0339219.mockable.io/screens/signup/1",
     "FormPage2": "https://demo0339219.mockable.io/screens/signup/2",
@@ -27,8 +27,8 @@ const withLayoutContainer = (WrappedComponent, routeName, isPrivateRoute=false) 
             const redirectToSignup = isPrivateRoute && !this.props.store.isLoggedIn;
             let url = routes[routeName]
             if (redirectToSignup) {
-                WrappedComponent = MainPage;
-                url = routes["MainPage"];
+                WrappedComponent = SignupPage;
+                url = routes["SignupPage"];
             }
             fetch(url)
                 .then(response => response.json())
@@ -58,6 +58,10 @@ const withLayoutContainer = (WrappedComponent, routeName, isPrivateRoute=false) 
             );
         }
     }
+    const wrappedComponentName = WrappedComponent.displayName
+    || WrappedComponent.name
+    || 'Component';
+    LayoutContainerHOC.displayName = `withLayoutContainer(${wrappedComponentName})`;
     return LayoutContainerHOC;
 }
 

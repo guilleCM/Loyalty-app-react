@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import PropTypes from 'prop-types';
 import { Page, List, ListItem, ListHeader, Checkbox, Icon } from 'react-onsenui';
 
 
 import NavBar from './NavBar';
 import './WelcomePage.css';
+
+const propTypes = {
+    layout: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
+};
 
 @inject('store')
 @observer 
@@ -16,7 +22,7 @@ class WelcomePage extends Component {
             COMPANY: 2,
         } 
         return(
-            <Page renderToolbar={() => <NavBar title={this.props.layout.title} navigator={navigator} />}>
+            <Page renderToolbar={() => <NavBar title={this.props.layout['title_'+this.props.store.userType]} navigator={navigator} />}>
                 <ListHeader modifier="custom-list-header" style={{paddingTop: '1rem', margin: 'auto'}}>
                     {this.props.store.userType !== userTypes.HOTEL_GUEST &&
                         <h3>{this.props.layout.sub_title_1 + " " + this.props.store.userName + "!"}</h3>
@@ -66,5 +72,7 @@ class WelcomePage extends Component {
         event.target.checked = !event.target.checked
     }
 }
+
+WelcomePage.propTypes = propTypes;
 
 export default WelcomePage;

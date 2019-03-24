@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, ListHeader, Checkbox, Button, Row } from 'react-onsenui';
 
 import NavBar from './NavBar';
 import FormPage from './FormPage';
 import withLayout from './WithLayoutContainer';
-import './MainPage.css';
+import './SignupPage.css';
+
+const propTypes = {
+    layout: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
+};
 
 @inject('store')
 @observer 
-class MainPage extends Component {
+class SignupPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,4 +78,6 @@ class MainPage extends Component {
 
 }
 
-export default MainPage;
+SignupPage.propTypes = propTypes;
+
+export default SignupPage;
