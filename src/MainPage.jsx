@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Page, List, ListItem, ListHeader, Checkbox, Button, Row } from 'react-onsenui';
 
 import NavBar from './NavBar';
@@ -16,16 +15,9 @@ class MainPage extends Component {
         this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
         this.onClickNextBtn = this.onClickNextBtn.bind(this);
     }
-    componentDidMount() {
-        document.getElementsByClassName('.font-animate').fontAnimate({
-            stroke: 'red',
-            duration: 500 // Vivus specific animation option
-        });        
-    }
     render() {
         return(
             <Page renderToolbar={() => <NavBar title={this.props.layout.title} navigator={navigator} />}>
-                <i className="fab fa-apple font-animate"></i>
                 <List
                     dataSource={this.props.layout.select}
                     renderHeader={() => <ListHeader modifier="custom-list-header">{this.props.layout.sub_title}</ListHeader>}

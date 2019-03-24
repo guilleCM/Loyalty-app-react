@@ -41,7 +41,7 @@ class FormPage extends Component {
                         renderFooter={() => <ListHeader modifier="custom-form-footer">{this.props.layout.form_help}</ListHeader>}
                     />
                     <Row style={{padding: '1rem'}}>
-                        <Button modifier="large--cta custom-btn" ripple onClick={this.onClickSubmit}>
+                        <Button modifier="large--cta custom-btn" ripple onClick={(e) => this.onClickSubmit(e)}>
                             {!this.state.fetching ?
                                 this.props.layout.next_step
                                 :
@@ -58,7 +58,11 @@ class FormPage extends Component {
             [name]: value,
         });
     }
-    onClickSubmit() {
+    onClickSubmit(event) {
+        if (this.state.fetching) {
+            event.preventDefault();
+            return false;
+        }
         let isValidForm = true;
         let newState = {};
         let dataToSend = {};
