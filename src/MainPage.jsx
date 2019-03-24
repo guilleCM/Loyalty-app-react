@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, ListHeader, Checkbox, Button, Row } from 'react-onsenui';
 
 import NavBar from './NavBar';
@@ -6,6 +7,8 @@ import FormPage from './FormPage';
 import withLayout from './WithLayoutContainer';
 import './MainPage.css';
 
+@inject('store')
+@observer 
 class MainPage extends Component {
     constructor(props) {
         super(props);
@@ -60,7 +63,7 @@ class MainPage extends Component {
     }
 
     onClickNextBtn() {
-        // window.history.pushState({}, "", "?user_type="+this.state.userType)
+        this.props.store.setUserType(this.state.userType);
         this.props.navigator.pushPage({
             component: withLayout(FormPage, "FormPage"+this.state.userType), key: 'FORM_PAGE_'+this.state.userType
         })

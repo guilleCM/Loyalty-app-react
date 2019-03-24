@@ -7,9 +7,12 @@ class Store {
     @observable userType = null 
 
     @action
-    loginUser = (userName, userType) => {
+    loginUser = (userName) => {
         this.isLoggedIn = true;
         this.userName = userName;
+    }
+    @action
+    setUserType = (userType) => {
         this.userType = userType;
     }
 }

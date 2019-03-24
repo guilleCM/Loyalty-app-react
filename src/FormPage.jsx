@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, Button, Row, ListHeader, ProgressCircular } from 'react-onsenui';
 
 import NavBar from './NavBar';
@@ -8,6 +8,8 @@ import withLayout from './WithLayoutContainer';
 import WelcomePage from './WelcomePage';
 import './FormPage.css';
 
+@inject('store')
+@observer 
 class FormPage extends Component {
     constructor(props) {
         super(props);
@@ -92,11 +94,13 @@ class FormPage extends Component {
             fetch(url, fetchOptions)
                 .then(response => response.json())
                 .then(data => {
-                    // this.setState({ data: data });
-                    console.log("LOGIN USER: MOBX USER")
+                    //here we should get the response data but for now we just get it from the state 
+                    let fieldName = ["name", "agency_name", "company_name"];
+                    let mockName = newState[fieldName[this.props.store.userType]];
+                    this.props.store.loginUser(mockName);
                     this.props.navigator.pushPage({
                         component: withLayout(WelcomePage, "WelcomePage0"), key: 'WELCOME_PAGE_0'
-                    })
+                    });
                 })
                 .catch(error => this.setState({ error: true }))
         }
