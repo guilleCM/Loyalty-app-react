@@ -6,7 +6,7 @@ import 'onsenui/css/onsen-css-components.css';
 import './App.css';
 
 import withLayoutContainer from './WithLayoutContainer';
-import MainPage from './MainPage.jsx';
+import WelcomePage from './WelcomePage.jsx';
 // const InitialRoute = withLayoutContainer(MainPage);
 
 const renderPage = (route, navigator) => (
@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <Navigator
                 renderPage={renderPage}
-                initialRoute={{component: withLayoutContainer(MainPage, "MainPage"), key: 'MAIN_PAGE'}}
+                initialRoute={{component: withLayoutContainer(WelcomePage, "WelcomePage0", true), key: 'WELCOCME_PAGE'}}
                 animation='fade'
             />
         );

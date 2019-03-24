@@ -5,3 +5,10 @@
     text-transform: none;
     font-size: 15px;
 }
+.checkbox--can-be-checked :checked + .checkbox__checkmark:before {
+    background: #b6b6b6;
+    border: none;
+}
+[class*='item-can-be-checked'] {
+    color: #b6b6b6;
+}

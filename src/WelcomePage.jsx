@@ -30,27 +30,35 @@ class WelcomePage extends Component {
                         <h3>{this.props.layout.sub_title_0 + " " + this.props.store.userName + "!"}</h3>
                     }
                 </ListHeader>
-                <List
-                    dataSource={this.props.layout.advantages}
-                    renderHeader={() => <ListHeader modifier="adv-list-header" >Advantages:</ListHeader>}
-                    renderRow={(adv, index) => {
-                        let isChecked = index !== 2;
-                        return (
-                            <ListItem key={index} modifier={"custom-list-item" + (isChecked ? " item-selected" : "")} tappable>
-                                <label className="left">
-                                    <Checkbox 
-                                        inputId={'checkbox' + index} 
-                                        onChange={(e) => this.onChangeCheckbox(e)}
-                                        checked={isChecked}
-                                    />
-                                </label>
-                                <label htmlFor={'checkbox' + index} className={"center"}>
-                                    {adv.caption}
-                                </label>
-                            </ListItem>
-                        );
-                    }}
-                />
+                {this.props.store.userType === userTypes.HOTEL_GUEST &&
+                    <List
+                        dataSource={this.props.layout.advantages}
+                        renderHeader={() => <ListHeader modifier="adv-list-header" >Advantages:</ListHeader>}
+                        renderRow={(adv, index) => {
+                            let canBeChecked = index === 2; //mocked just for now
+                            return (
+                                <ListItem key={index} modifier={"custom-list-item" + (canBeChecked ? " item-can-be-checked" : " item-selected")} tappable>
+                                    <label className="left">
+                                        <Checkbox 
+                                            inputId={'checkbox' + index} 
+                                            onChange={(e) => this.onChangeCheckbox(e)}
+                                            checked={true}
+                                            modifier={canBeChecked ? "can-be-checked" : ""}
+                                        />
+                                    </label>
+                                    <label htmlFor={'checkbox' + index} className={"center"}>
+                                        {adv.caption}
+                                    </label>
+                                </ListItem>
+                            );
+                        }}
+                    />
+                }
+                {this.props.store.userType !== userTypes.HOTEL_GUEST &&
+                    <ListHeader modifier="custom-list-footer" style={{backgroundImage: 'none'}}>
+                        {this.props.layout.footer.charAt(0).toUpperCase() + this.props.layout.footer.slice(1)}
+                    </ListHeader>
+                }
             </Page>
         )
     }

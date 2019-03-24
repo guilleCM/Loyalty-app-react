@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 import { ProgressCircular, Page } from 'react-onsenui';
+import MainPage from './MainPage';
 
 // import MainPage from './MainPage';
 const routes = {
@@ -10,7 +12,9 @@ const routes = {
     "WelcomePage0": "https://demo0339219.mockable.io/screens/welcome/0",
 }
 
-const withLayoutContainer = (WrappedComponent, routeName) => {
+const withLayoutContainer = (WrappedComponent, routeName, isPrivateRoute=false) => {
+    @inject('store')
+    @observer
     class LayoutContainerHOC extends Component {
         constructor(props) {
             super(props);
@@ -20,7 +24,12 @@ const withLayoutContainer = (WrappedComponent, routeName) => {
             };
         }
         componentDidMount() {
+            const redirectToSignup = isPrivateRoute && !this.props.store.isLoggedIn;
             let url = routes[routeName]
+            if (redirectToSignup) {
+                WrappedComponent = MainPage;
+                url = routes["MainPage"];
+            }
             fetch(url)
                 .then(response => response.json())
                 .then(data => this.setState({ data: data }))
