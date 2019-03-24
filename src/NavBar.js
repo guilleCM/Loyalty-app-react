@@ -13,7 +13,7 @@ const NavApp = ({ title, navigator, backButton }) => (
             null}
         </div>
         <div className='center'>
-            <strong>
+            <strong className="navbar-title">
                 {title}
             </strong>
         </div>

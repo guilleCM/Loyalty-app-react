@@ -5,6 +5,7 @@
 
 [class*='custom-list-item'] {
     padding: 0.5rem;
+    text-transform: uppercase;
 }
 [class*='custom-list-item']::before {
     content : "";
@@ -34,6 +35,7 @@ label[class*='custom-list-item'] {
 }
 
 [class*='custom-btn'] {
+    text-transform: uppercase;
     background-color: #b5a05f;
 }
 [class*='custom-btn']:active {

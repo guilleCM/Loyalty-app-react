@@ -1,54 +1,28 @@
 import React, { Component } from 'react';
 
-import { Page, List, ListItem, Button, Row, ListHeader } from 'react-onsenui';
+import { Page, List, ListItem, Button, Row, ListHeader, ProgressCircular } from 'react-onsenui';
 
 import NavBar from './NavBar';
 import InputHOC from './InputHOC';
+import withLayout from './WithLayoutContainer';
+import WelcomePage from './WelcomePage';
 import './FormPage.css';
 
-const fields = [
-    {
-        name: "name",
-        label: "Name",
-        type: "string",
-        required: true
-    },
-    {
-        name: "last_name",
-        label: "Last Name",
-        type: "string",
-        required: true
-    },
-    {
-        name: "email",
-        label: "Email",
-        type: "email",
-        required: true
-    },
-    {
-        name: "phone",
-        label: "Phone",
-        type: "tel",
-        required: true
-    },
-
-]
 class FormPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.state = {}
         this.formRef = React.createRef();
         this.onInputChange = this.onInputChange.bind(this);
         this.onClickSubmit = this.onClickSubmit.bind(this);
     }
     render() {
         return(
-            <Page renderToolbar={() => <NavBar backButton title='HOTEL GUEST' navigator={this.props.navigator} />}>
+            <Page renderToolbar={() => <NavBar backButton title={this.props.layout.title} navigator={this.props.navigator} />}>
                 <form ref={this.formRef}>
                     <List
                         style={{paddingTop: '12px'}}
-                        dataSource={fields}
+                        dataSource={this.props.layout.fields}
                         renderRow={(field, index) => {
                             return (
                                 <ListItem key={index} tappable modifier="nodivider">
@@ -64,11 +38,15 @@ class FormPage extends Component {
                                 </ListItem>
                             );
                         }}
-                        renderFooter={() => <ListHeader modifier="custom-form-footer">* required field</ListHeader>}
+                        renderFooter={() => <ListHeader modifier="custom-form-footer">{this.props.layout.form_help}</ListHeader>}
                     />
                     <Row style={{padding: '1rem'}}>
                         <Button modifier="large--cta custom-btn" ripple onClick={this.onClickSubmit}>
-                            SEND
+                            {!this.state.fetching ?
+                                this.props.layout.next_step
+                                :
+                                <ProgressCircular style={{verticalAlign: 'middle'}} indeterminate modifier="send-btn-progress" />
+                            }
                         </Button>
                     </Row>
                 </form>
@@ -83,12 +61,14 @@ class FormPage extends Component {
     onClickSubmit() {
         let isValidForm = true;
         let newState = {};
-        for (let field of fields) {
+        let dataToSend = {};
+        for (let field of this.props.layout.fields) {
             let input = this.formRef.current.querySelector('input[name="'+field.name+'"]');
             if (input.checkValidity()) {
                 newState[field.name] = this.state[field.name];
                 newState[field.name+"-isInvalid"] = false;
                 newState[field.name+"-feedback"] = '';
+                dataToSend[field.name] = this.state[field.name];
             }
             else {
                 isValidForm = false;
@@ -98,8 +78,23 @@ class FormPage extends Component {
             }
         }
         if (isValidForm) {
+            newState['fetching'] = true;
             this.setState(newState);
-            console.log("Send")
+            let fetchOptions = {
+                method: 'post',
+                body: JSON.stringify(dataToSend),
+            }
+            const url = 'https://demo0339219.mockable.io/users';
+            fetch(url, fetchOptions)
+                .then(response => response.json())
+                .then(data => {
+                    // this.setState({ data: data });
+                    console.log("LOGIN USER: MOBX USER")
+                    this.props.navigator.pushPage({
+                        component: withLayout(WelcomePage, "WelcomePage0"), key: 'WELCOME_PAGE_0'
+                    })
+                })
+                .catch(error => this.setState({ error: true }))
         }
         else {
             this.setState(newState);

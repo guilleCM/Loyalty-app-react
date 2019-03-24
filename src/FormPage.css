@@ -3,3 +3,6 @@
     font-weight: bold;
     padding-top: 1rem; 
 }
+[class*='progress-circular--send-btn-progress__primary'] {
+    stroke: white;
+}

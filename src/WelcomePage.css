@@ -1,0 +1,7 @@
+[class*='adv-list-header'] {
+    text-align: center;
+    padding-top: 0.5rem;
+    background: white;
+    text-transform: none;
+    font-size: 15px;
+}
