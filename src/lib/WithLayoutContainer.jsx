@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { ProgressCircular, Page } from 'react-onsenui';
-import SignupPage from './SignupPage';
+import SignupPage from './../pages/signup/SignupPage';
 
 // import SignupPage from './SignupPage';
 const routes = {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Page, List, ListItem, ListHeader, Checkbox, Icon } from 'react-onsenui';
 
 
-import NavBar from './NavBar';
+import NavBar from './../../components/layout/NavBar';
 import './WelcomePage.css';
 
 const propTypes = {

@@ -6,3 +6,7 @@
   top: calc(50% - 30px);
   left: calc(50% - 25px);  
 }
+.page__content {
+  max-width: 475px;
+  margin: auto;
+}

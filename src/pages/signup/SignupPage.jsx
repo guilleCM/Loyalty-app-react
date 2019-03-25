@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, ListHeader, Checkbox, Button, Row } from 'react-onsenui';
 
-import NavBar from './NavBar';
-import FormPage from './FormPage';
-import withLayout from './WithLayoutContainer';
+import NavBar from './../../components/layout/NavBar';
+import FormPage from './../form/FormPage';
+import withLayout from './../../lib/WithLayoutContainer';
 import './SignupPage.css';
 
 const propTypes = {

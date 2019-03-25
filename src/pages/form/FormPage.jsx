@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import { Page, List, ListItem, Button, Row, ListHeader, ProgressCircular } from 'react-onsenui';
 
-import NavBar from './NavBar';
-import InputHOC from './InputHOC';
-import withLayout from './WithLayoutContainer';
-import WelcomePage from './WelcomePage';
+import NavBar from '../../components/layout/NavBar';
+import InputHOC from './../../components/inputs/InputHOC';
+import withLayout from '../../lib/WithLayoutContainer';
+import WelcomePage from './../welcome/WelcomePage';
 import './FormPage.css';
 
 const propTypes = {
