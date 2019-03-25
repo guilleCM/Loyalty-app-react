@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Loyalty-app-react/precache-manifest.44ca25e59f0adb6c8f24cc2e7cc564c0.js"
+  "/Loyalty-app-react/precache-manifest.298e5427d11518c6e7476a9d55b4a019.js"
 );
 
 workbox.clientsClaim();

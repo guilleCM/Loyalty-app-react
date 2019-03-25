@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/Loyalty-app-react/static/media/fa-regular-400.dad90637.woff"
   },
   {
-    "revision": "8d220c793e2612bd131ed8522c54669f",
-    "url": "/Loyalty-app-react/static/media/fa-regular-400.8d220c79.ttf"
-  },
-  {
     "revision": "e6c93cb47e716b579264a5fdfbf7e84d",
     "url": "/Loyalty-app-react/static/media/fa-regular-400.e6c93cb4.eot"
+  },
+  {
+    "revision": "8d220c793e2612bd131ed8522c54669f",
+    "url": "/Loyalty-app-react/static/media/fa-regular-400.8d220c79.ttf"
   },
   {
     "revision": "a4d31128b633bc0b1cc1f18a34fb3851",
