@@ -1,3 +1,10 @@
+## [Online demo](https://guillecm.github.io/Loyalty-app-react/)
+
+## How to install
+1. Clone the project
+2. Run `npm install` inside the project root folder
+3. Run `npm start` to run in development mode or `npm run build` yo prepare a production build.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
